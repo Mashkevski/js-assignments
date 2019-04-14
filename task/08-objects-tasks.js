@@ -7,8 +7,6 @@
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object        *
  *                                                                                                *
  **************************************************************************************************/
-
-
 /**
  * Returns the rectagle object with width and height parameters and getArea() method
  *
@@ -22,8 +20,14 @@
  *    console.log(r.height);      // => 20
  *    console.log(r.getArea());   // => 200
  */
-function Rectangle(width, height) {
-    throw new Error('Not implemented');
+class Rectangle {
+  constructor(width, height) {
+    this.width = width;
+    this.height = height;
+  }
+  getArea() {
+    return this.width * this.height;
+  }
 }
 
 
@@ -38,7 +42,7 @@ function Rectangle(width, height) {
  *    { width: 10, height : 20 } => '{"height":10,"width":20}'
  */
 function getJSON(obj) {
-    throw new Error('Not implemented');
+  return JSON.stringify(obj);
 }
 
 
@@ -54,9 +58,14 @@ function getJSON(obj) {
  *
  */
 function fromJSON(proto, json) {
-    throw new Error('Not implemented');
+  let jsonObj = JSON.parse(json);
+  const protoObj = Object.create(proto);
+  const keys = Object.keys(jsonObj);
+  for (let key of keys) {
+    protoObj[key] = jsonObj[key];
+  }
+  return protoObj;
 }
-
 
 /**
  * Css selectors builder
